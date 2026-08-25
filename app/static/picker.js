@@ -112,6 +112,8 @@ btnLanjut.addEventListener("click", async () => {
     return;
   }
   alert(`Pilihan tersimpan!\n\n${body.message}`);
+  // Lanjut ke tahap Preview & Adjust
+  window.location.href = `/adjust?session=${encodeURIComponent(sessionCode)}&frame=${frameId}`;
 });
 
 init();

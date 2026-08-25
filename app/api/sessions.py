@@ -8,6 +8,7 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session as DBSession
 
 from app.db import get_db
+from app.models.selection import Selection
 from app.services.session_service import (
     SessionValidationError,
     create_dummy_session,
@@ -99,6 +100,103 @@ def select_photos_endpoint(
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc))
     return result
+
+
+@router.get("/{session_code}/selection")
+def get_selection_endpoint(session_code: str, db: DBSession = Depends(get_db)):
+    """Ambil pilihan foto tersimpan untuk session (dipakai halaman adjust)."""
+    import json
+
+    try:
+        session = validate_session_code(db, session_code)
+    except SessionValidationError as exc:
+        raise HTTPException(status_code=exc.status_code, detail=exc.detail)
+
+    selection = (
+        db.query(Selection).filter(Selection.session_id == session.id).first()
+    )
+    if selection is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Belum ada pilihan foto untuk session ini.",
+        )
+    return {
+        "session_code": session.session_code,
+        "frame_id": selection.frame_id,
+        "selected_photos": json.loads(selection.photos_json),
+        "adjustments": json.loads(selection.adjustments_json)
+        if selection.adjustments_json
+        else None,
+    }
+
+
+class AdjustPhotosRequest(BaseModel):
+    """Payload konfirmasi Preview & Adjust: posisi/zoom final tiap foto."""
+
+    frame_id: int
+    # contoh item: {"filename": "photo_01.jpg", "x": 100, "y": 250, "scale": 1.2}
+    adjustments: list[dict]
+
+
+@router.post("/{session_code}/adjust-photos")
+def adjust_photos_endpoint(
+    session_code: str, payload: AdjustPhotosRequest, db: DBSession = Depends(get_db)
+):
+    """Simpan posisi/zoom final tiap foto (dari halaman Preview & Adjust).
+
+    Disimpan di tabel selections yang sama (kolom adjustments_json) karena
+    adjustment 1:1 dengan selection - tidak perlu tabel baru.
+    Koordinat memakai ruang pixel cetak (print_width_px x print_height_px).
+    """
+    import json
+
+    try:
+        session = validate_session_code(db, session_code)
+    except SessionValidationError as exc:
+        raise HTTPException(status_code=exc.status_code, detail=exc.detail)
+
+    selection = (
+        db.query(Selection).filter(Selection.session_id == session.id).first()
+    )
+    if selection is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Belum ada pilihan foto untuk session ini. Pilih foto dulu.",
+        )
+    if selection.frame_id != payload.frame_id:
+        raise HTTPException(
+            status_code=400,
+            detail="Frame_id tidak cocok dengan pilihan foto yang tersimpan.",
+        )
+
+    filenames = json.loads(selection.photos_json)
+    by_name = {a.get("filename"): a for a in payload.adjustments}
+    missing = [f for f in filenames if f not in by_name]
+    if missing:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Adjustment belum lengkap, kurang: {', '.join(missing)}",
+        )
+
+    # Simpan hanya field yang dibutuhkan, urut sesuai urutan pemilihan
+    clean = [
+        {
+            "filename": f,
+            "x": float(by_name[f].get("x", 0)),
+            "y": float(by_name[f].get("y", 0)),
+            "scale": float(by_name[f].get("scale", 1)),
+        }
+        for f in filenames
+    ]
+    selection.adjustments_json = json.dumps(clean)
+    db.commit()
+
+    return {
+        "session_code": session.session_code,
+        "frame_id": payload.frame_id,
+        "saved": len(clean),
+        "message": "Penyesuaian posisi/zoom berhasil disimpan.",
+    }
 
 
 @router.post("/dummy")

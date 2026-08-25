@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Preview &amp; Adjust - Self Photo Studio</title>
+<link rel="stylesheet" href="/static/picker.css" />
+<link rel="stylesheet" href="/static/adjust.css" />
+</head>
+<body>
+<header class="bar">
+  <div>
+    <h1>Preview &amp; Adjust</h1>
+    <p id="session-info">Memuat session...</p>
+  </div>
+  <div class="counter-box">
+    <span id="active-slot">-</span>
+  </div>
+</header>
+
+<main class="adjust-main">
+  <p id="error-msg" class="hidden"></p>
+  <p class="tip">Geser foto untuk memposisikan. Zoom: scroll mouse atau pinch di layar sentuh.</p>
+  <div class="canvas-wrap">
+    <canvas id="frame-canvas"></canvas>
+  </div>
+</main>
+
+<footer class="bar bottom">
+  <p id="hint">Sentuh foto lalu geser/zoom.</p>
+  <button id="btn-confirm">Konfirmasi</button>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
+<script src="/static/adjust.js"></script>
+</body>
+</html>

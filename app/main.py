@@ -33,6 +33,14 @@ app.include_router(sessions.router)
 app.include_router(frames.router)
 
 
+@app.get("/adjust", include_in_schema=False)
+def adjust_page():
+    """Halaman Preview & Adjust (canvas Fabric.js)."""
+    from fastapi.responses import FileResponse
+
+    return FileResponse(Path(__file__).parent / "templates" / "adjust.html")
+
+
 @app.get("/picker", include_in_schema=False)
 def picker_page():
     """Halaman photo picker (frontend sederhana)."""
