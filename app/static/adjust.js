@@ -205,7 +205,11 @@ btnConfirm.addEventListener("click", async () => {
     btnConfirm.disabled = false;
     return;
   }
-  alert(body.message);
+  // Lanjut ke halaman konfirmasi akhir
+  window.location.href =
+    `/confirmation?session=${encodeURIComponent(sessionCode)}` +
+    `&order=${encodeURIComponent(body.order_ref)}` +
+    `&frame=${frameId}&preview=${encodeURIComponent(body.output_url)}`;
 });
 
 init();

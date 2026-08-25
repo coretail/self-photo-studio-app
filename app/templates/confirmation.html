@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Konfirmasi - Self Photo Studio</title>
+<link rel="stylesheet" href="/static/picker.css" />
+<link rel="stylesheet" href="/static/confirmation.css" />
+</head>
+<body>
+<header class="bar">
+  <div>
+    <h1>Pesanan Berhasil Dibuat &#10003;</h1>
+    <p>Tunjukkan nomor order ini ke admin untuk pembayaran &amp; pencetakan.</p>
+  </div>
+</header>
+
+<main class="confirm-main">
+  <div class="order-ref-box">
+    <p class="label">Nomor Order Anda</p>
+    <p id="order-ref">-</p>
+  </div>
+
+  <div class="summary">
+    <div class="row"><span>Session</span><span id="sum-session">-</span></div>
+    <div class="row"><span>Frame</span><span id="sum-frame">-</span></div>
+    <div class="row"><span>Jumlah foto</span><span id="sum-photos">-</span></div>
+    <div class="row"><span>Waktu</span><span id="sum-time">-</span></div>
+    <div class="row"><span>Status</span><span id="sum-status" class="ok">-</span></div>
+  </div>
+
+  <div class="preview-box">
+    <p>Hasil akhir:</p>
+    <img id="preview-img" alt="Preview hasil cetak" />
+  </div>
+</main>
+
+<script src="/static/confirmation.js"></script>
+<script src="/static/idle-timer.js"></script>
+</body>
+</html>

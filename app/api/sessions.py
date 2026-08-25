@@ -199,6 +199,33 @@ def adjust_photos_endpoint(
     }
 
 
+@router.post("/{session_code}/confirm")
+def confirm_endpoint(session_code: str, db: DBSession = Depends(get_db)):
+    """Tahap terakhir: validasi session, render JPEG final, buat Order.
+
+    - 200 : order berhasil, return order_ref + ringkasan
+    - 404/410 : session tidak valid/expired
+    - 400 : belum ada selection/adjustment
+    - 500 : gagal render file
+    """
+    try:
+        session = validate_session_code(db, session_code)
+    except SessionValidationError as exc:
+        raise HTTPException(status_code=exc.status_code, detail=exc.detail)
+
+    from app.services.output_service import generate_print_file
+
+    try:
+        result = generate_print_file(db, session_code)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
+    except RuntimeError as exc:
+        raise HTTPException(status_code=500, detail=str(exc))
+
+    result["session_code"] = session.session_code
+    return result
+
+
 @router.post("/dummy")
 def create_dummy_session_endpoint(
     num_photos: int = 4, db: DBSession = Depends(get_db)

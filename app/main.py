@@ -41,6 +41,14 @@ def landing_page():
     return FileResponse(Path(__file__).parent / "templates" / "landing.html")
 
 
+@app.get("/confirmation", include_in_schema=False)
+def confirmation_page():
+    """Halaman konfirmasi akhir: menampilkan order ref untuk admin."""
+    from fastapi.responses import FileResponse
+
+    return FileResponse(Path(__file__).parent / "templates" / "confirmation.html")
+
+
 @app.get("/adjust", include_in_schema=False)
 def adjust_page():
     """Halaman Preview & Adjust (canvas Fabric.js)."""
