@@ -4,6 +4,9 @@ venv/
 # Database lokal
 studio.db
 
+# Data sesi foto lokal
+data/
+
 # Python
 __pycache__/
 *.pyc

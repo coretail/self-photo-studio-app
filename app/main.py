@@ -3,7 +3,7 @@
 from fastapi import FastAPI
 
 from app.db import init_db
-from app.api import health
+from app.api import health, sessions
 
 app = FastAPI(
     title="Self-Photo Studio API",
@@ -13,6 +13,7 @@ app = FastAPI(
 
 # Daftarkan router
 app.include_router(health.router)
+app.include_router(sessions.router)
 
 
 @app.on_event("startup")
