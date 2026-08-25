@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Self Photo Studio - Mulai</title>
+<link rel="stylesheet" href="/static/picker.css" />
+<link rel="stylesheet" href="/static/landing.css" />
+</head>
+<body>
+<header class="bar">
+  <div>
+    <h1>Self Photo Studio</h1>
+    <p>Selamat datang! Masukkan Session ID foto Anda untuk mulai.</p>
+  </div>
+</header>
+
+<main class="landing-main">
+  <!-- Langkah 1: input Session ID -->
+  <section id="step-session">
+    <label for="session-input">Session ID</label>
+    <div class="input-row">
+      <input id="session-input" type="text" placeholder="Contoh: SES-1A2B3C4D"
+             autocomplete="off" spellcheck="false" />
+      <button id="btn-start">Mulai</button>
+    </div>
+    <p id="error-msg" class="hidden"></p>
+  </section>
+
+  <!-- Langkah 2: pilih frame (muncul setelah session valid) -->
+  <section id="step-frame" class="hidden">
+    <h2>Session <span id="ok-code"></span> valid &#10003;</h2>
+    <p>Pilih template frame yang Anda inginkan:</p>
+    <div id="frame-list" class="frame-list"></div>
+  </section>
+</main>
+
+<script src="/static/landing.js"></script>
+</body>
+</html>

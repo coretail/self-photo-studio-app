@@ -33,6 +33,14 @@ app.include_router(sessions.router)
 app.include_router(frames.router)
 
 
+@app.get("/", include_in_schema=False)
+def landing_page():
+    """Halaman Landing/Start: input session ID + pilih frame."""
+    from fastapi.responses import FileResponse
+
+    return FileResponse(Path(__file__).parent / "templates" / "landing.html")
+
+
 @app.get("/adjust", include_in_schema=False)
 def adjust_page():
     """Halaman Preview & Adjust (canvas Fabric.js)."""
