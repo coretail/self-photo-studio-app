@@ -34,7 +34,7 @@ def validate_session_endpoint(
     - 410 : session sudah expired
     """
     try:
-        session = validate_session(db, payload.session_code)
+        session = validate_session_code(db, payload.session_code)
     except SessionValidationError as exc:
         raise HTTPException(status_code=exc.status_code, detail=exc.detail)
 
