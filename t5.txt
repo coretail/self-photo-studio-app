@@ -1,8 +1,0 @@
-﻿26: @router.post("/validate")
-61: @router.get("/{session_code}/photos")
-86: @router.post("/{session_code}/select-photos")
-105: @router.get("/{session_code}/selection")
-141: @router.post("/{session_code}/adjust-photos")
-202: @router.post("/{session_code}/confirm")
-203: def confirm_endpoint(session_code: str, db: DBSession = Depends(get_db)):
-229: @router.post("/dummy")
