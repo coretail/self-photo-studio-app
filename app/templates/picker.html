@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pilih Foto - Self Photo Studio</title>
+<link rel="stylesheet" href="/static/picker.css" />
+</head>
+<body>
+<header class="bar">
+  <div>
+    <h1>Pilih Foto</h1>
+    <p id="session-info">Memuat session...</p>
+  </div>
+  <div class="counter-box">
+    <span id="counter">0/0</span> foto dipilih
+  </div>
+</header>
+
+<main>
+  <p id="error-msg" class="hidden"></p>
+  <div id="grid" class="grid"></div>
+</main>
+
+<footer class="bar bottom">
+  <p id="hint"></p>
+  <button id="btn-lanjut" disabled>Lanjut</button>
+</footer>
+
+<script src="/static/picker.js"></script>
+</body>
+</html>

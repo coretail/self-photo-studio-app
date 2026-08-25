@@ -1,7 +1,11 @@
 """Entry point aplikasi FastAPI Self-Photo Studio."""
 
-from fastapi import FastAPI
+from pathlib import Path
 
+from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+
+from app.config import DATA_DIR
 from app.db import init_db
 from app.api import frames, health, sessions
 from app.services.frame_service import seed_frames
@@ -12,10 +16,31 @@ app = FastAPI(
     description="Backend kiosk self-photo studio (MVP).",
 )
 
+# Serve foto session: /media/sessions/{session_code}/{filename}
+DATA_DIR.mkdir(parents=True, exist_ok=True)
+app.mount("/media", StaticFiles(directory=str(DATA_DIR)), name="media")
+
+# Serve asset frontend
+app.mount(
+    "/static",
+    StaticFiles(directory=str(Path(__file__).parent / "static")),
+    name="static",
+)
+
 # Daftarkan router
 app.include_router(health.router)
 app.include_router(sessions.router)
 app.include_router(frames.router)
+
+
+@app.get("/picker", include_in_schema=False)
+def picker_page():
+    """Halaman photo picker (frontend sederhana)."""
+    from pathlib import Path
+
+    from fastapi.responses import FileResponse
+
+    return FileResponse(Path(__file__).parent / "templates" / "picker.html")
 
 
 @app.on_event("startup")

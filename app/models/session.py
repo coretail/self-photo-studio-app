@@ -19,3 +19,6 @@ class Session(Base):
     status: Mapped[str] = mapped_column(String(32), default="active")
 
     orders: Mapped[list["Order"]] = relationship(back_populates="session")
+    selection: Mapped["Selection"] = relationship(
+        back_populates="session", uselist=False
+    )

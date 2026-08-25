@@ -11,8 +11,9 @@ from app.db import get_db
 from app.services.session_service import (
     SessionValidationError,
     create_dummy_session,
-    validate_session,
+    validate_session as validate_session_code,
 )
+from app.services.photo_service import list_session_photos, select_photos
 
 router = APIRouter(prefix="/api/sessions", tags=["sessions"])
 
@@ -56,6 +57,50 @@ def validate_session_endpoint(
     }
 
 
+@router.get("/{session_code}/photos")
+def list_photos_endpoint(session_code: str, db: DBSession = Depends(get_db)):
+    """List foto dalam session (validasi session + expiry dulu).
+
+    - 200 : daftar foto (filename, url, size_bytes)
+    - 404 : session/folder tidak ditemukan
+    - 410 : session expired
+    """
+    try:
+        session = validate_session_code(db, session_code)
+    except SessionValidationError as exc:
+        raise HTTPException(status_code=exc.status_code, detail=exc.detail)
+
+    return {
+        "session_code": session.session_code,
+        "expires_at": session.expires_at.isoformat() if session.expires_at else None,
+        "photos": list_session_photos(session),
+    }
+
+
+class SelectPhotosRequest(BaseModel):
+    frame_id: int
+    filenames: list[str]
+
+
+@router.post("/{session_code}/select-photos")
+def select_photos_endpoint(
+    session_code: str, payload: SelectPhotosRequest, db: DBSession = Depends(get_db)
+):
+    """Simpan pilihan foto klien untuk frame tertentu.
+
+    - 200 : pilihan tersimpan
+    - 404/410 : session tidak valid/expired
+    - 400 : jumlah foto tidak sesuai slot frame / filename tidak ada
+    """
+    try:
+        result = select_photos(db, session_code, payload.frame_id, payload.filenames)
+    except SessionValidationError as exc:
+        raise HTTPException(status_code=exc.status_code, detail=exc.detail)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
+    return result
+
+
 @router.post("/dummy")
 def create_dummy_session_endpoint(
     num_photos: int = 4, db: DBSession = Depends(get_db)
@@ -71,3 +116,4 @@ def create_dummy_session_endpoint(
         "expires_at": session.expires_at.isoformat() if session.expires_at else None,
         "num_photos": max(1, min(num_photos, 8)),
     }
+

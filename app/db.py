@@ -28,7 +28,7 @@ def init_db() -> None:
     Model harus di-import dulu sebelum fungsi ini dipanggil agar
     metadata-nya terisi.
     """
-    from app.models import frame, order, session  # noqa: F401
+    from app.models import frame, order, selection, session  # noqa: F401
 
     Base.metadata.create_all(bind=engine)
 
