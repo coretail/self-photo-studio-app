@@ -17,5 +17,6 @@ class Frame(Base):
     print_width_px: Mapped[int] = mapped_column(Integer)   # dimensi cetak dalam pixel
     print_height_px: Mapped[int] = mapped_column(Integer)
     dpi: Mapped[int] = mapped_column(Integer, default=300)
+    is_active: Mapped[bool] = mapped_column(default=True)
 
     orders: Mapped[list["Order"]] = relationship(back_populates="frame")
