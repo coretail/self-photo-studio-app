@@ -1,6 +1,13 @@
 # Virtual environment
 venv/
 
+# Database lokal
+studio.db
+
+# Python
+__pycache__/
+*.pyc
+
 # Python
 __pycache__/
 *.pyc
