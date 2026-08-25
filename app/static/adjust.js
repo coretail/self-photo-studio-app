@@ -193,6 +193,7 @@ btnConfirm.addEventListener("click", async () => {
     y: Math.round(img.top),
     scale: Number(img.scaleX.toFixed(4)),
   }));
+  // 1. Simpan penyesuaian posisi/zoom
   const res = await fetch(`/api/sessions/${sessionCode}/adjust-photos`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -205,11 +206,24 @@ btnConfirm.addEventListener("click", async () => {
     btnConfirm.disabled = false;
     return;
   }
-  // Lanjut ke halaman konfirmasi akhir
+  // 2. Generate file cetak final via confirm endpoint
+  const confirmRes = await fetch(`/api/sessions/${sessionCode}/confirm`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: "{}",
+  });
+  const confirmBody = await confirmRes.json();
+  if (!confirmRes.ok) {
+    errorMsg.textContent = confirmBody.detail || "Gagal membuat file cetak.";
+    errorMsg.classList.remove("hidden");
+    btnConfirm.disabled = false;
+    return;
+  }
+  // 3. Redirect ke halaman konfirmasi dengan data lengkap
   window.location.href =
     `/confirmation?session=${encodeURIComponent(sessionCode)}` +
-    `&order=${encodeURIComponent(body.order_ref)}` +
-    `&frame=${frameId}&preview=${encodeURIComponent(body.output_url)}`;
+    `&order=${encodeURIComponent(confirmBody.order_ref)}` +
+    `&frame=${frameId}&preview=${encodeURIComponent(confirmBody.output_url)}`;
 });
 
 init();
