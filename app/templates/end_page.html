@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="style/global.css" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+/** @type {import('tailwindcss').Config} */
+    tailwind.config = {
+      corePlugins: {
+        preflight: false,
+      },
+      theme: {
+        extend: {},
+      },
+      plugins: [],
+    };
+  </script>
+</head>
+<body>
+<main class="bg-white overflow-hidden w-full min-w-[1920px] min-h-[1080px] flex">
+<div class="-mt-3.5 w-[2090px] h-[1171px] ml-[-153px] relative">
+<img
+        class="absolute top-3.5 left-[153px] w-[1920px] h-[1080px] aspect-[1.78] object-cover"
+        src="img/BG-sisa-page-1.png"
+        alt=""
+        aria-hidden="true"
+      />
+<header>
+<button
+          class="absolute top-[73px] left-[265px] w-[66px] h-[63px] flex items-center justify-center border-0 bg-transparent p-0 cursor-pointer"
+          type="button"
+          aria-label="Kembali"
+        >
+<img class="w-[42.5px]" src="img/icon.svg" alt="" aria-hidden="true" />
+</button>
+</header>
+<section
+        class="absolute top-[392px] left-[calc(50.00%_-_61px)]"
+        aria-labelledby="print-status-title"
+      >
+<h1
+          id="print-status-title"
+          class="[font-family:'Inter-Bold',Helvetica] font-bold text-black text-[40px] text-center tracking-[0] leading-[normal] m-0"
+        >
+Foto dalam<br />
+Proses Cetak
+        </h1>
+<p
+          class="absolute top-[133px] left-[-248px] w-[500px] [font-family:'Inter-Bold',Helvetica] font-bold text-black text-xl text-center tracking-[0] leading-[normal] m-0"
+        >
+Masih mau tambah cetak dengan design lain?<br />
+Tenang saja, langsung klik Cetak lagi
+        </p>
+</section>
+<div
+        class="absolute top-[639px] left-[725px] flex gap-[51px]"
+        role="group"
+        aria-label="Pilihan setelah mencetak foto"
+      >
+<button
+          class="w-[363px] h-[78px] bg-[#ff8d28] rounded-[49px] border-0 p-0 [font-family:'Inter-Bold',Helvetica] font-bold text-black text-[40px] text-center tracking-[0] leading-[normal] whitespace-nowrap cursor-pointer"
+          type="button"
+        >
+Cetak lagi
+        </button>
+<button
+          class="w-[363px] h-[78px] bg-[#ff8d28] rounded-[49px] border-0 p-0 [font-family:'Inter-Bold',Helvetica] font-bold text-black text-[40px] text-center tracking-[0] leading-[normal] whitespace-nowrap cursor-pointer"
+          type="button"
+        >
+Selesai
+        </button>
+</div>
+</div>
+</main>
+</body>
+</html>

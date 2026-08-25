@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="style/global.css" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+/** @type {import('tailwindcss').Config} */
+    tailwind.config = {
+      corePlugins: {
+        preflight: false,
+      },
+      theme: {
+        extend: {},
+      },
+      plugins: [],
+    };
+  </script>
+<title>Pilih Foto</title>
+</head>
+<body>
+<main class="bg-white overflow-hidden w-full min-w-[1920px] min-h-[1080px] flex" aria-labelledby="page-title">
+<div class="-mt-3.5 w-[1981px] h-[1110px] ml-[-42px] relative">
+<img
+        class="absolute top-3.5 left-[42px] w-[1920px] h-[1080px] aspect-[1.78] object-cover"
+        src="img/BG-sisa-page-1.png"
+        alt=""
+        aria-hidden="true"
+      />
+<header>
+<button
+          type="button"
+          class="absolute top-[75px] left-[157px] w-[66px] h-[63px] flex appearance-none border-0 bg-transparent p-0 cursor-pointer"
+          aria-label="Kembali ke halaman sebelumnya"
+          onclick="window.history.back()"
+        >
+<img class="flex-1 w-[42.5px]" src="img/icon.svg" alt="" aria-hidden="true" />
+</button>
+<h1
+          id="page-title"
+          class="absolute top-[179px] left-[calc(50.00%_-_144px)] [text-shadow:6px_4px_0px_#fe4e12] [font-family:'Poller_One-Regular',Helvetica] font-normal text-[#0143a1] text-5xl text-center tracking-[0] leading-[normal] whitespace-nowrap"
+        >
+Pilih Foto
+        </h1>
+</header>
+<section aria-labelledby="photo-selection-title">
+<h2
+          id="photo-selection-title"
+          class="absolute top-[278px] left-[187px] [font-family:'Inter-Bold',Helvetica] font-bold text-black text-2xl tracking-[0] leading-[normal]"
+        >
+Silahkan Pilih Foto terlebih dahulu
+        </h2>
+<form class="absolute top-[336px] left-[157px] w-[1021px] h-[691px] bg-[#ffadd1] rounded-2xl" aria-label="Pilihan foto">
+<fieldset class="m-0 border-0 p-0">
+<legend class="sr-only">Pilih satu foto</legend>
+<label class="absolute top-[61px] left-[62px] w-[204px] h-[270px] bg-[#666666] cursor-pointer focus-within:outline focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-black">
+<input class="sr-only" type="radio" name="foto" value="1" aria-label="Pilih foto 1" />
+</label>
+<label class="absolute top-[360px] left-[62px] w-[204px] h-[270px] bg-[#666666] cursor-pointer focus-within:outline focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-black">
+<input class="sr-only" type="radio" name="foto" value="2" aria-label="Pilih foto 2" />
+</label>
+<label class="absolute top-[61px] left-[294px] w-[204px] h-[270px] bg-[#666666] cursor-pointer focus-within:outline focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-black">
+<input class="sr-only" type="radio" name="foto" value="3" aria-label="Pilih foto 3" />
+</label>
+<label class="absolute top-[360px] left-[294px] w-[204px] h-[270px] bg-[#666666] cursor-pointer focus-within:outline focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-black">
+<input class="sr-only" type="radio" name="foto" value="4" aria-label="Pilih foto 4" />
+</label>
+<label class="absolute top-[61px] left-[526px] w-[204px] h-[270px] bg-[#666666] cursor-pointer focus-within:outline focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-black">
+<input class="sr-only" type="radio" name="foto" value="5" aria-label="Pilih foto 5" />
+</label>
+<label class="absolute top-[360px] left-[526px] w-[204px] h-[270px] bg-[#666666] cursor-pointer focus-within:outline focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-black">
+<input class="sr-only" type="radio" name="foto" value="6" aria-label="Pilih foto 6" />
+</label>
+<label class="absolute top-[61px] left-[758px] w-[204px] h-[270px] bg-[#666666] cursor-pointer focus-within:outline focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-black">
+<input class="sr-only" type="radio" name="foto" value="7" aria-label="Pilih foto 7" />
+</label>
+<label class="absolute top-[360px] left-[758px] w-[204px] h-[270px] bg-[#666666] cursor-pointer focus-within:outline focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-black">
+<input class="sr-only" type="radio" name="foto" value="8" aria-label="Pilih foto 8" />
+</label>
+</fieldset>
+</form>
+</section>
+<aside aria-labelledby="preview-title">
+<h2
+          id="preview-title"
+          class="absolute top-[291px] left-[calc(50.00%_+_466px)] [text-shadow:6px_4px_0px_#fe4e12] [font-family:'Poller_One-Regular',Helvetica] font-normal text-[#0143a1] text-5xl text-center tracking-[0] leading-[normal] whitespace-nowrap"
+        >
+Preview
+        </h2>
+<div
+          class="absolute top-[387px] left-[1401px] w-[349px] h-[477px] bg-[#d9d9d9]"
+          role="status"
+          aria-live="polite"
+          aria-label="Preview foto yang dipilih"
+        ></div>
+<button
+          type="submit"
+          form="photo-selection-form"
+          class="absolute top-[899px] left-[1394px] w-[363px] h-[78px] bg-[#ff8d28] rounded-[49px] appearance-none border-0 p-0 cursor-pointer [font-family:'Inter-Bold',Helvetica] font-bold text-black text-[40px] text-center tracking-[0] leading-[normal] whitespace-nowrap"
+        >
+Cetak
+        </button>
+</aside>
+</div>
+</main>
+</body>
+</html>

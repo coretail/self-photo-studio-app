@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kenalan Dulu</title>
+<link rel="stylesheet" href="style/global.css" />
+<link rel="stylesheet" href="style/styleguide.css" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+/** @type {import('tailwindcss').Config} */
+    tailwind.config = {
+      corePlugins: {
+        preflight: false,
+      },
+      theme: {
+        extend: {
+          boxShadow: {
+            "m3-elevation-light-2": "var(--m3-elevation-light-2)",
+          },
+        },
+      },
+      plugins: [],
+    };
+  </script>
+</head>
+<body>
+<main class="relative w-[1963px] h-[1104px]" aria-labelledby="introduction-title">
+<section class="fixed top-[-146px] left-[-3818px] w-[1973px] h-[1104px] shadow-m3-elevation-light-2" aria-label="Form perkenalan">
+<img
+        class="absolute top-0 left-0 w-[1963px] h-[1104px] aspect-[1.78] object-cover"
+        src="img/BG-page-1-1.png"
+        alt=""
+        aria-hidden="true"
+      />
+<img
+        class="absolute top-[calc(50.00%_-_102px)] left-[calc(50.00%_+_140px)] w-[532px] h-[69px]"
+        src="img/rectangle-1.svg"
+        alt=""
+        aria-hidden="true"
+      />
+<h1
+        id="introduction-title"
+        class="absolute top-[281px] left-[calc(50.00%_+_128px)] m-0 [text-shadow:6px_4px_0px_#fe4e12] [font-family:'Poller_One-Regular',Helvetica] font-normal text-[#0143a1] text-5xl text-center tracking-[0] leading-[normal]"
+      >
+Halo Kaka,<br />
+Kenalan dulu yuuk
+      </h1>
+<form class="contents" action="#" method="post">
+<label
+          for="name"
+          class="absolute top-[419px] left-[1152px] [font-family:'Inter-Bold',Helvetica] font-bold text-black text-xl text-center tracking-[0] leading-[normal] whitespace-nowrap"
+        >
+Name
+        </label>
+<input
+          id="name"
+          name="name"
+          type="text"
+          required
+          autocomplete="name"
+          class="absolute top-[450px] left-[1152px] w-[532px] h-[69px] border-0 bg-transparent p-0 text-black outline-none [font-family:'Inter-Bold',Helvetica] text-xl"
+          aria-label="Name"
+        />
+<img
+          class="absolute top-[50.00%] left-[calc(50.00%_+_140px)] w-[532px] h-[69px]"
+          src="img/rectangle-5.svg"
+          alt=""
+          aria-hidden="true"
+        />
+<label
+          for="whatsapp"
+          class="absolute top-[521px] left-[1152px] [font-family:'Inter-Bold',Helvetica] font-bold text-black text-xl tracking-[0] leading-[normal] whitespace-nowrap"
+        >
+Whatsapp
+        </label>
+<input
+          id="whatsapp"
+          name="whatsapp"
+          type="tel"
+          required
+          autocomplete="tel"
+          inputmode="tel"
+          class="absolute top-[552px] left-[1152px] w-[532px] h-[69px] border-0 bg-transparent p-0 text-black outline-none [font-family:'Inter-Bold',Helvetica] text-xl"
+          aria-label="Whatsapp"
+        />
+<img
+          class="absolute top-[calc(50.00%_+_102px)] left-[calc(50.00%_+_140px)] w-[532px] h-[69px]"
+          src="img/rectangle-6.svg"
+          alt=""
+          aria-hidden="true"
+        />
+<label
+          for="email"
+          class="absolute top-[623px] left-[1152px] [font-family:'Inter-Bold',Helvetica] font-bold text-black text-xl tracking-[0] leading-[normal] whitespace-nowrap"
+        >
+Email
+        </label>
+<input
+          id="email"
+          name="email"
+          type="email"
+          required
+          autocomplete="email"
+          class="absolute top-[654px] left-[1152px] w-[532px] h-[69px] border-0 bg-transparent p-0 text-black outline-none [font-family:'Inter-Bold',Helvetica] text-xl"
+          aria-label="Email"
+        />
+<img
+          class="absolute top-[calc(50.00%_+_216px)] left-[calc(50.00%_+_244px)] w-[324px] h-[74px]"
+          src="img/rectangle-7.svg"
+          alt=""
+          aria-hidden="true"
+        />
+<button
+          type="submit"
+          class="absolute top-[762px] left-[1240px] w-[324px] h-[74px] border-0 bg-transparent p-0 [font-family:'Inter-Bold',Helvetica] font-bold text-white text-[32px] tracking-[0] leading-[normal] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4a90e2]"
+        >
+NEXT
+        </button>
+</form>
+<img
+        class="absolute top-1.5 left-0 w-[813px] h-[1098px]"
+        src="img/mask-group.png"
+        alt=""
+        aria-hidden="true"
+      />
+<button
+        type="button"
+        class="absolute top-[62px] left-[1844px] w-16 h-16 border-0 bg-transparent p-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4a90e2]"
+        aria-label="Pengaturan"
+      >
+<img class="w-16 h-16" src="img/settings.svg" alt="" aria-hidden="true" />
+</button>
+</section>
+</main>
+</body>
+</html>
